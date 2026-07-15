@@ -1,6 +1,7 @@
 #include <iostream>
 
-void getBitValue(int number, int bitValue)
+// This function calculates the bit value
+void printBitValue(int number, int bitValue)
 {
 	int q{ number / bitValue };
 	std::cout << (q % 2) ? "1" : "0";
@@ -12,14 +13,16 @@ int main()
 	int number{};
 	std::cin >> number;
 
-	getBitValue(number, 128);
-	getBitValue(number, 64);
-	getBitValue(number, 32);
-	getBitValue(number, 16);
-	getBitValue(number, 8);
-	getBitValue(number, 4);
-	getBitValue(number, 2);
-	getBitValue(number, 1);
+	// The value of bit at position 7 is 128 (value of bit at position 0 being 1)
+	int bit8{ 128 };
+
+	for (int i{ 0 }; i < 8; ++i)
+	{
+		printBitValue(number, bit8);
+		// Dividing bit8 by 2 at the end so at the next iteration,
+		// we divide number by 64 and so on..
+		bit8 /= 2;
+	}
 
 	return 0;
 }
