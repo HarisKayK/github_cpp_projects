@@ -3,7 +3,7 @@
 
 int main()
 {
-	// Get the number from user
+	// Ask for user input for a number
 	std::cout << "Enter a number (0 - 255): ";
 	int number{};
 	std::cin >> number;
@@ -14,7 +14,6 @@ int main()
 	for (int i{ 0 }; i < 8; ++i)
 	{
 		printBitValue(number, bit8);
-
 		// Dividing bit8 by 2 at the end so at the next iteration,
 		// we divide number by 64 and so on..
 		bit8 /= 2;
