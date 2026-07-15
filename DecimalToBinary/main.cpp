@@ -13,6 +13,12 @@ int main()
 
 	for (int i{ 0 }; i < 8; ++i)
 	{
+		// To output in this format: #### ####
+		if (i == 4)
+		{
+			std::cout << ' ';
+		}
+
 		printBitValue(number, bit8);
 		// Dividing bit8 by 2 at the end so at the next iteration,
 		// we divide number by 64 and so on..
