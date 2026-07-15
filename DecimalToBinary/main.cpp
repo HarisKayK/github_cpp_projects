@@ -1,14 +1,9 @@
 #include <iostream>
-
-// This function calculates the bit value
-void printBitValue(int number, int bitValue)
-{
-	int q{ number / bitValue };
-	std::cout << (q % 2) ? "1" : "0";
-}
+#include "printBitValue.h"
 
 int main()
 {
+	// Get the number from user
 	std::cout << "Enter a number (0 - 255): ";
 	int number{};
 	std::cin >> number;
@@ -19,6 +14,7 @@ int main()
 	for (int i{ 0 }; i < 8; ++i)
 	{
 		printBitValue(number, bit8);
+
 		// Dividing bit8 by 2 at the end so at the next iteration,
 		// we divide number by 64 and so on..
 		bit8 /= 2;
