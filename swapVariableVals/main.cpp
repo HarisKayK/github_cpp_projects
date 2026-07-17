@@ -1,19 +1,23 @@
-/*
-Write a program that asks the user to enter two integers,
-one named smaller, the other named larger. If the user enters
-a smaller value for the second integer, use a block and a 
-temporary variable to swap the smaller and larger values. 
-Then print the values of the smaller and larger variables. 
-Add comments to your code indicating where each variable dies. 
-Note: When you print the values, smaller should hold the smaller 
-input and larger the larger input, no matter which order they were entered in.
-*/
-
 #include <iostream>
+#include "functions.h"
 
 int main()
 {
-	std::cout << "Hello, world!\n";
+	std::cout << "Enter an integer: ";
+	int smaller{ getInt() }; // smaller variable is defined here
+
+	std::cout << "Enter a larger integer: ";
+	int larger{ getInt() }; // larger variable is defined here
+
+	if (larger < smaller)
+	{
+		int smaller_value{ larger }; // smaller_value variable is defined here
+		larger = smaller;
+		smaller = smaller_value;
+	} // smaller_value variable is destroyed here
+
+	std::cout << "Smaller value: " << smaller << '\n';
+	std::cout << "Larger value: " << larger << '\n';
 
 	return 0;
-}
+} // smaller and larger variables are destroyed here
