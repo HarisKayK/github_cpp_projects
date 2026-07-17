@@ -9,12 +9,8 @@ int main()
 	std::cout << "Enter a larger integer: ";
 	int larger{ getInt() }; // larger variable is defined here
 
-	if (larger < smaller)
-	{
-		int smaller_value{ larger }; // smaller_value variable is defined here
-		larger = smaller;
-		smaller = smaller_value;
-	} // smaller_value variable is destroyed here
+	// Swap variables if larger variable is assigned a smaller value
+	std::swap(larger, smaller);
 
 	std::cout << "Smaller value: " << smaller << '\n';
 	std::cout << "Larger value: " << larger << '\n';
