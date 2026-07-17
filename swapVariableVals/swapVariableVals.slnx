@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="swapVariableVals.vcxproj" Id="67483cfb-ecc0-4032-8711-8f9862f9d90f" />
+</Solution>
