@@ -10,8 +10,8 @@ int main()
 	// Game loop
 	do
 	{
-		hiLow(min, max, guesses);
-	} while (playAgain);
+		hiLo(min, max, guesses);
+	} while (playAgain());
 	
 	return 0;
 }
