@@ -1,5 +1,39 @@
 #include <iostream> // for std::cout and std::cin
 #include "Random.h" // for get(min, max)
+#include "errorHandling.h"
+
+int getGuess()
+{
+	int guess{};
+
+	while (true)
+	{
+		std::cin >> guess;
+
+		if (clearFailedExtraction())
+		{
+			std::cout << "Invalid input!\n";
+			return -1;
+		}
+
+		if (unextractedInput())
+		{
+			clearBuffer();
+			std::cout << "Inalid input!\n";
+			return -1;
+		}
+
+		if (guess < 0 || guess > 100)
+		{
+			std::cout << "Out of bounds... guess between 1 - 100\n";
+			return -1;
+		}
+
+		break;
+	}
+
+	return guess;
+}
 
 // This is the main function of the game that generates a random number
 // And compares the user's guess with the random number
@@ -14,8 +48,9 @@ void hiLo(int min, int max, int guesses)
 	for (int i{ 1 }; i <= guesses; i++)
 	{
 		std::cout << "Guess #" << i << ": ";
-		int guess{};
-		std::cin >> guess;
+
+		int guess{ getGuess() };
+		if (guess == -1) continue;
 
 		if (guess > random_number)
 		{
@@ -50,8 +85,22 @@ bool playAgain()
 		char option{};
 		std::cin >> option;
 
-		if (option == 'y') return true;
-		else if (option == 'n') return false;
-		else continue;
+		if (unextractedInput())
+		{
+			clearBuffer();
+			std::cout << "Invalid input! type only (y/n)\n";
+			continue;
+		}
+
+		switch (option)
+		{
+		case 'y':
+			return true;
+		case 'n':
+			return false;
+		default:
+			std::cout << "Invalid input! type only (y/n)\n";
+			continue;
+		}
 	}
 }
