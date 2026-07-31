@@ -1,10 +1,5 @@
 #include <iostream>
-
-struct Fraction
-{
-	int numerator{};
-	int denominator{};
-};
+#include "Fraction.h"
 
 Fraction getFraction()
 {
