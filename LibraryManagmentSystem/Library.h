@@ -21,19 +21,17 @@ namespace MembersList
 	inline 	Member member10{ "Talha" };
 }
 
-using namespace MembersList;
-
-inline std::vector<Member> memberList{
-	member1,
-	member2,
-	member3,
-	member4,
-	member5,
-	member6,
-	member7,
-	member8,
-	member9,
-	member10
+inline std::vector<Member> membersList{
+	MembersList::member1,
+	MembersList::member2,
+	MembersList::member3,
+	MembersList::member4,
+	MembersList::member5,
+	MembersList::member6,
+	MembersList::member7,
+	MembersList::member8,
+	MembersList::member9,
+	MembersList::member10
 };
 
 // Book list
@@ -51,19 +49,17 @@ namespace BooksList
 	inline Book book10{ "Harry Potter and the Philosopher's Stone", "J.K. Rowling", "Fantasy", 9780747532699, false };
 }
 
-using namespace BooksList;
-
-inline std::vector<Book> bookList{
-	book1,
-	book2,
-	book3,
-	book4,
-	book5,
-	book6,
-	book7,
-	book8,
-	book9,
-	book10
+inline std::vector<Book> booksList{
+	BooksList::book1,
+	BooksList::book2,
+	BooksList::book3,
+	BooksList::book4,
+	BooksList::book5,
+	BooksList::book6,
+	BooksList::book7,
+	BooksList::book8,
+	BooksList::book9,
+	BooksList::book10
 };
 
 // CLASS
@@ -72,7 +68,9 @@ class Library
 {
 public:
 	Library(const std::vector<Member>& members, const std::vector<Book>& books);
+
 	void printInfo();
+	void addMember(Member member);
 
 private:
 	std::vector<Member> m_members{};

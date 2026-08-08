@@ -24,3 +24,8 @@ void Library::printInfo()
 			<< book.getAuthor() << " | Genre: " << book.getGenre() << '\n';
 	}
 }
+
+void Library::addMember(Member member)
+{
+	m_members.push_back(member);
+}
