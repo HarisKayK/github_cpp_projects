@@ -32,17 +32,56 @@ class Session
 {
 private:
 	std::string_view m_word{ WordList::getRandomWord() };
+	std::string m_guessed_letters{};
 
 public:
-	std::string_view const getWord() { return m_word; }
+	std::string_view getWord() const { return m_word; }
+
+	std::string_view getGuessedLetters() const
+	{
+		return m_guessed_letters;
+	}
+
+	void addLetter(char letter)
+	{
+		m_guessed_letters.push_back(letter);
+	}
+
 };
 
-void draw(std::string_view word)
+void draw(Session& s)
 {
-	for ([[maybe_unused]] auto letter : word)
+	std::cout << '\n';
+
+	std::cout << "The word: ";
+	bool found{ false };
+	for (auto randomWordletter : s.getWord())
 	{
-		std::cout << "_";
+		for (auto gussedLetter : s.getGuessedLetters())
+		{
+			if (randomWordletter == gussedLetter)
+			{
+				found = true;
+				break;
+			}
+			else
+			{
+				found = false;
+			}
+		}
+
+		if (found)
+		{
+			std::cout << randomWordletter;
+		}
+		else
+		{
+			std::cout << "_";
+		}
+
 	}
+
+	std::cout << '\n';
 }
 
 char getLetter()
@@ -76,13 +115,45 @@ char getLetter()
 
 int main()
 {
-	Session session{};
 	std::cout << Title::title;
 
-	std::string word{ session.getWord() };
-	std::cout << "The word is " << word << '\n';
+	Session s{};
+	std::cout << s.getWord();
+	draw(s);
+	char letter{ getLetter() };
+	s.addLetter(letter);
 
-	[[maybe_unused]] char letter{ getLetter()};
+	int gameLoop{ 6 };
+	while (gameLoop >= 0)
+	{
+		draw(s);
+		letter = getLetter();
+
+		bool added{ false };
+		for (char character : s.getGuessedLetters())
+		{
+			if (letter == character)
+			{
+				added = true;
+			}
+			else
+			{
+				continue;
+			}
+		}
+
+		if (added)
+		{
+			std::cout << "You already guessed that. Try again.\n";
+		}
+		else
+		{
+			s.addLetter(letter);
+		}
+
+		--gameLoop;
+	}
+
 
 	return 0;
 }
